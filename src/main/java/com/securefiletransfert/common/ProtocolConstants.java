@@ -1,8 +1,6 @@
 package com.securefiletransfert.common;
 
-/**
- * Constantes du protocole de communication
- */
+
 public class ProtocolConstants {
     
     // Messages d'authentification
@@ -23,8 +21,6 @@ public class ProtocolConstants {
     // Taille du buffer pour le transfert
     public static final int BUFFER_SIZE = 8192;
     
-    private ProtocolConstants() {
-        // Classe utilitaire, pas d'instanciation
-    }
+    private ProtocolConstants() {}
 }
 
