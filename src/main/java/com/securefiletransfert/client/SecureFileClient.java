@@ -6,10 +6,6 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-/**
- * Client pour le transfert de fichiers sécurisé
- * Interface en ligne de commande
- */
 public class SecureFileClient {
     
     private String serverAddress;
@@ -27,9 +23,7 @@ public class SecureFileClient {
         this.filePath = filePath;
     }
     
-    /**
-     * Exécute le transfert de fichier
-     */
+
     public void transferFile() {
         try (Socket socket = new Socket(serverAddress, serverPort);
              BufferedReader in = new BufferedReader(
@@ -40,24 +34,20 @@ public class SecureFileClient {
                  socket.getOutputStream())) {
             
             System.out.println("Connecté au serveur " + serverAddress + ":" + serverPort);
-            
-            // PHASE 1 : Authentification
+
             if (!handleAuthentication(in, out)) {
                 System.err.println("Échec de l'authentification");
                 return;
             }
             
-            // Pré-traitement du fichier
             System.out.println("Traitement du fichier...");
             FileProcessor.ProcessedFile processedFile = FileProcessor.processFile(filePath);
-            
-            // PHASE 2 : Négociation
+
             if (!handleNegotiation(in, out, processedFile)) {
                 System.err.println("Échec de la négociation");
                 return;
             }
-            
-            // PHASE 3 : Transfert
+
             if (!handleTransfer(dataOut, in, processedFile)) {
                 System.err.println("Échec du transfert");
                 return;
@@ -71,9 +61,6 @@ public class SecureFileClient {
         }
     }
     
-    /**
-     * Phase 1 : Authentification
-     */
     private boolean handleAuthentication(BufferedReader in, PrintWriter out) 
             throws IOException {
         String authData = username + ProtocolConstants.AUTH_SEPARATOR + password;
@@ -89,9 +76,7 @@ public class SecureFileClient {
         }
     }
     
-    /**
-     * Phase 2 : Négociation (envoi des métadonnées)
-     */
+
     private boolean handleNegotiation(BufferedReader in, PrintWriter out, 
                                      FileProcessor.ProcessedFile processedFile) 
             throws IOException {
@@ -118,21 +103,17 @@ public class SecureFileClient {
         }
     }
     
-    /**
-     * Phase 3 : Transfert du fichier chiffré
-     */
+
     private boolean handleTransfer(DataOutputStream dataOut, BufferedReader in, 
                                   FileProcessor.ProcessedFile processedFile) 
             throws IOException {
         System.out.println("Envoi du fichier chiffré...");
-        
-        // Envoyer les données chiffrées
+
         dataOut.write(processedFile.getEncryptedContent());
         dataOut.flush();
         
         System.out.println("Fichier envoyé: " + processedFile.getEncryptedSize() + " bytes");
-        
-        // Attendre la réponse du serveur
+
         String response = in.readLine();
         if (ProtocolConstants.TRANSFER_SUCCESS.equals(response)) {
             System.out.println("Transfert confirmé par le serveur");
@@ -143,15 +124,12 @@ public class SecureFileClient {
         }
     }
     
-    /**
-     * Point d'entrée principal avec interface CLI
-     */
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
         System.out.println("=== Client de Transfert de Fichiers Sécurisé ===\n");
         
-        // Demander les informations
         System.out.print("Adresse IP du serveur [localhost]: ");
         String serverAddress = scanner.nextLine().trim();
         if (serverAddress.isEmpty()) {
@@ -179,8 +157,7 @@ public class SecureFileClient {
         String filePath = scanner.nextLine().trim();
         
         scanner.close();
-        
-        // Créer et lancer le client
+
         SecureFileClient client = new SecureFileClient(
             serverAddress, serverPort, username, password, filePath);
         client.transferFile();
