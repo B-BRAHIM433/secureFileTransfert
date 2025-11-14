@@ -1,0 +1,10 @@
+com/securefiletransfert/server/SecureFileServer.class
+com/securefiletransfert/client/FileProcessor.class
+com/securefiletransfert/server/AuthenticationManager.class
+com/securefiletransfert/server/ClientTransferHandler$FileMetadata.class
+com/securefiletransfert/server/ClientTransferHandler.class
+com/securefiletransfert/common/CryptoUtils.class
+com/securefiletransfert/common/ProtocolConstants.class
+com/securefiletransfert/Main.class
+com/securefiletransfert/client/FileProcessor$ProcessedFile.class
+com/securefiletransfert/client/SecureFileClient.class

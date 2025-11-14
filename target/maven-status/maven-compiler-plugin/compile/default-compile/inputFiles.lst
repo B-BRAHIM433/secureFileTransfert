@@ -1,0 +1,8 @@
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/server/SecureFileServer.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/client/FileProcessor.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/server/ClientTransferHandler.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/client/SecureFileClient.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/Main.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/common/ProtocolConstants.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/common/CryptoUtils.java
+/home/baychou/Desktop/SecureFileTransfert/securefiletransfert/src/main/java/com/securefiletransfert/server/AuthenticationManager.java
